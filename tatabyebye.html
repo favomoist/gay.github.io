@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB-like Dark Interface</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Top Blue Bar */
+        .top-bar {
+            background-color: #1e3a8a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 20px;
+            border-bottom: 2px solid #3a3a3d;
+        }
+
+        .top-bar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .left span {
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .top-bar .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .right input {
+            background-color: #252526;
+            color: white;
+            border: 1px solid #3a3a3d;
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+
+        .top-bar .right .user {
+            margin-left: 20px;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            background-color: #2d2d30;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #3a3a3d;
+        }
+
+        .toolbar .menu-item {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* File Explorer */
+        .file-explorer {
+            width: 20%;
+            background-color: #252526;
+            border-right: 1px solid #3a3a3d;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .file-explorer h3 {
+            color: #9cdcfe;
+        }
+
+        /* Workspace */
+        .workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #1e1e1e;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #252526;
+            border-bottom: 1px solid #3a3a3d;
+        }
+
+        .tab {
+            padding: 10px 15px;
+            background-color: #2d2d30;
+            cursor: pointer;
+            color: #d4d4d4;
+            border-right: 1px solid #3a3a3d;
+        }
+
+        .tab.active {
+            background-color: #1e1e1e;
+            font-weight: bold;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .editor, .command-window {
+            flex: 1;
+            background-color: #1e1e1e;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #3a3a3d;
+            color: #ffffff;
+            overflow: auto;
+        }
+
+        /* Monospaced font for the editor */
+        .editor {
+            min-width: 60%;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Blue Bar -->
+    <div class="top-bar">
+        <div class="left">
+            <span>MATLAB</span>
+            <span></span>
+        </div>
+        <div class="right">
+            <input type="text" placeholder="Search (Ctrl+Shift+Space)" />
+            <div class="user">USER</div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div>
+            <span class="menu-item">File</span>
+            <span class="menu-item">Edit</span>
+            <span class="menu-item">View</span>
+        </div>
+        <div>
+            <span class="menu-item">Help</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- File Explorer -->
+        <div class="file-explorer">
+            <h3>Files</h3>
+            <ul>
+                <li>example1.m</li>
+                <li>example2.m</li>
+                <li>Untitled.m</li>
+            </ul>
+        </div>
+
+        <!-- Workspace -->
+        <div class="workspace">
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active">Untitled.m</div>
+                <div class="tab">text.m</div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Editor Area -->
+                <div class="editor" id="editor">
+                    <h4></h4>
+                    <p>
+clc<br>
+clear all<br>
+close all<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+                    </p>
+                    <p style="color:white;">
+                        1. PARAMETRIC PLOTTING<br>
+                        clc<br>
+                        clear all<br>
+                        close all<br>
+                        t = linspace(0, 2*pi, 20);<br>
+                        x = 3 + 2*cos(t);<br>
+                        y = 4 + 2*sin(t);<br>
+                        plot(x, y, 'k-*')<br>
+                        axis equal<br>
+                        xlabel('x(m)')<br>
+                        ylabel('y(m)')<br>
+                        title('Graph of (x-3)^2 + (y-4)^2 = 4')<br>
+                        legend('(x-3)^2 + (y-4)^2 = 4')<br>
+                        
+                    </p>
+                    <br><br><br><br>
+                    <p style="color:#808080;">
+                        %% 2. MULTIPLE PLOTS IN A FIGURE WINDOW (USING COMMAND HOLD ON)<br>
+                        clc <br>
+                        clear all <br>
+                        close all <br>
+                        x = linspace(0,1) <br>
+                        plot(x,x.^2,'r*') <br>
+                        hold on <br>
+                        plot(x,sin(x),'g.') <br>
+                        plot(x,exp(x),'m+') <br>
+                        legend('x^2','sin(x)','exp(x)')<br>
+                        </p>
+                        <br><br><br><br>
+                    <p style="color:white;">
+                            % 3. GRAPH OF A CURVE THROUGH EZPLOT COMMAND<br>
+                            clc <br>
+                            clear all <br>
+                            syms x <br>
+                            % Declaring the parameters as a symbolic object <br>
+                            f = sin(2*x) + cos(3*x) <br>
+                            figure(1) <br>
+                            ezplot(f) <br>
+                            figure(2) <br>
+                            ezplot(f,[0,3])<br>
+                            </p>
+                            <br><br><br><br>
+                            <p style="color:#808080;">
+                                % 4. GRAPH OF A CURVE AND ITS TANGENT LINE IN THE NEIGHBOURHOOD D OF A POINT.<br>
+                                
+                                syms x <br>
+                                y = x^2 - 2*x; <br>
+                                x1 = 2; <br>
+                                D = [x1-2 x1+2] <br>
+                                ezplot(y,D) <br>
+                                hold on <br>
+                                yd = diff(y,x); <br>
+                                slope = subs(yd,x,x1); <br>
+                                y1 = subs(y,x,x1); <br>
+                                plot(x1,y1,'ko') <br>
+                                
+                                Tgt_line = slope*(x-x1)+y1 <br>
+                                h = ezplot(Tgt_line,D); <br>
+                                set(h,'color','r') <br>
+                                </p>
+                                <br><br><br><br>
+                                <p style="color:#ffffff;">
+                                    % 5. EXTREMA OF A SINGLE VARIABLE FUNCTION.<br>
+                                    syms x real <br>
+                                    f = input('Enter the function f(x):'); <br>
+                                    fx = diff(f,x) <br>
+                                    c = solve(fx) <br>
+                                    cmin = min(double(c)); <br>
+                                    cmax = max(double(c)); <br>
+                                    ezplot(f,[cmin-2,cmax+2]) <br>
+                                    hold on <br>
+                                    fxx = diff(fx,x) <br>
+                                    for i = 1:1:size(c) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;T1 = subs(fxx, x ,c(i)); <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;T3 = subs(f, x, c(i)); <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;if (double(T1) == 0) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The point x is %d inflexion point', double(c(i))) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;else <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (double(T1) < 0) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The maximum point x is %d', double(c(i))) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The value of the function is %d', double(T3)) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The minimum point x is %d', double(c(i))) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The value of the function is %d', double(T3)) <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;end <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;plot(double(c(i)), double(T3), 'r*', 'markersize', 15); <br>
+                                    end <br>
+                                    pause <br>
+                                    h = ezplot(fx,[cmin-2,cmax+2]) <br>
+                                    set(h,'color','r') <br>
+                                    hold on <br>
+                                    pause <br>
+                                    e = ezplot(fxx,[cmin-4,cmax+4]) <br>
+                                    set(e,'color','g') <br>
+                                    hold off <br>
+                                    </p>
+                                    
+                                <br><br><br><br>
+
+
+
+                                    <p style="color:#808080;">
+                                        % B. Area between the curves:<br>
+                                        clc<br>
+                                        clear all<br>
+                                        close all<br>
+                                        syms x<br>
+                                        y1=input('ENTER THE Y1 REGION VALUE');<br>
+                                        y2=input('ENTER THE Y2 REGION VALUE');<br>
+                                        t=solve(y1-y2); %(Y1-Y2=0)<br>
+                                        po=double(t)<br>
+                                        poi=sort(po)<br>
+                                        n=length(poi)<br>
+                                        m1=min(poi)<br>
+                                        m2=max(poi)<br>
+                                        <br>
+                                        ez1=ezplot(y1,[m1-1,m2+1])<br>
+                                        hold on<br>
+                                        TA=0<br>
+                                        ez2=ezplot(y2,[m1-1,m2+1])<br>
+                                        if n>2<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;for i=1:n-1<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A=int(y1-y2,poi(i),poi(i+1))<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TA= TA+abs(A)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1 = linspace(poi(i),poi(i+1))<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yy1 =subs(y1,x,x1)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yy2 = subs(y2,x,x1)<br>
+                                        <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;%iii) Creating a polygon:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;xx = [x1,fliplr(x1)]<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;yy = [yy1,fliplr(yy2)]<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;fill(xx,yy,'g')<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;grid on<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+                                        else<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;A=int(y1-y2,poi(1),poi(2))<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;TA=abs(A)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;x1 = linspace(poi(1),poi(2));<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;yy1 =subs(y1,x,x1)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;yy2 = subs(y2,x,x1)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;xx = [x1,fliplr(x1)]<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;yy = [yy1,fliplr(yy2)]<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;fill(xx,yy,'g')<br>
+                                        end<br>
+                                        </p>
+                                        
+                                        <br><br><br><br>
+
+                                        <p style="color: white;">
+                                            % Volume of Solid of Revolution<br>
+                                            clc<br>
+                                            clear all<br>
+                                            close all<br>
+                                            %%<br>
+                                            syms x;<br>
+                                            f = input('Enter the function: ');<br>
+                                            fL = input('Enter the interval on which the function is defined: ');<br>
+                                            yr = input('Enter the axis of rotation y = c (enter only c value): ');<br>
+                                            iL = input('Enter the integration limits: ');<br>
+                                            Volume = pi*int((f-yr)^2,iL(1),iL(2));<br>
+                                            sprintf('Volume is %3f ', double(Volume))<br>
+                                            %% Shading the area between the axis of rot. and function<br>
+                                            fx = inline(vectorize(f));<br>
+                                            xvals = linspace(fL(1),fL(2),201);<br>
+                                            xvalsr = fliplr(xvals);<br>
+                                            xivals = linspace(iL(1),iL(2),201);<br>
+                                            xivalsr = fliplr(xivals);<br>
+                                            xlim = [fL(1) fL(2)+0.5];<br>
+                                            ylim = fx(xlim);<br>
+                                            figure('Position',[100 200 560 420])<br>
+                                            subplot(2,1,1)<br>
+                                            hold on;<br>
+                                            plot(xvals,fx(xvals),'k-','LineWidth',2);<br>
+                                            plot([fL(1) fL(2)],[yr yr],'r-','LineWidth',2);<br>
+                                            fill([xivals xivalsr],[fx(xivals) ones(size(xivalsr))*yr],[0.8 0.8 0.8],'FaceAlpha',0.8)<br>
+                                            %% Marking the axis<br>
+                                            %plot([fL(1) fL(2)],[yr yr],'r-','LineWidth',2);<br>
+                                            legend('Function Plot','Axis of Rotation', 'Filled Region','Location','Best');<br>
+                                            title('Function y=f(x) and Region');<br>
+                                            set(gca,'XLim',xlim)<br>
+                                            xlabel('x−axis');<br>
+                                            ylabel('y−axis');<br>
+                                            %% Plotting reflection of the curve about the axis of rot<br>
+                                            subplot(2,1,2)<br>
+                                            hold on;<br>
+                                            plot(xivals,fx(xivals),'b-','LineWidth',2);<br>
+                                            plot([iL(1) iL(2)],[yr yr],'r-','LineWidth',2);<br>
+                                            fill([xivals xivalsr],[fx(xivals) ones(size(xivalsr))*yr],[0.8 0.8 0.8],'FaceAlpha',0.8)<br>
+                                            plot(xivals,-fx(xivals)+2*yr,'m-','LineWidth',2);<br>
+                                            fill([xivals xivalsr],[ones(size(xivals))*yr -fx(xivalsr)+2*yr],[1 0.8 0.8],'FaceAlpha',0.8)<br>
+                                            title('Rotated Region in xy−Plane');<br>
+                                            set(gca,'XLim',xlim)<br>
+                                            xlabel('x−axis');<br>
+                                            ylabel('y−axis');<br>
+                                            %% Solid<br>
+                                            [X,Y,Z] = cylinder(fx(xivals)-yr,100);<br>
+                                            figure('Position',[700 200 560 420])<br>
+                                            Z = iL(1) + Z.*(iL(2)-iL(1));<br>
+                                            surf(Z,Y+yr,X,'EdgeColor','none','FaceColor','flat','FaceAlpha',0.6);<br>
+                                            hold on;<br>
+                                            plot([iL(1) iL(2)],[yr yr],'r-','LineWidth',2);<br>
+                                            xlabel('X−axis');<br>
+                                            ylabel('Y−axis');<br>
+                                            zlabel('Z−axis');<br>
+                                            view(21,11);<br>
+                                            </p>
+
+
+                                            <br><br><br><br>
+                                            <p style="color: gray;">
+                                                % Partial Derivatives for functions two variables<br>
+                                                % 1.Initialization:<br>
+                                                clc<br>
+                                                clear all<br>
+                                                format compact<br>
+                                                syms x y<br>
+                                                z = input('Enter the two dimensional function f(x,y): ');<br>
+                                                x1 = input('enter the x value at which the derivative has to be evaluated: ');<br>
+                                                y1 = input('enter the y value at which the derivative has to be evaluated: ');<br>
+                                                <br>
+                                                % 2.Slope Calculation:<br>
+                                                z1 = subs(subs(z,x,x1),y,y1)<br>
+                                                ezsurf(z,[x1-2 x1+2])<br>
+                                                f1 = diff(z,x)<br>
+                                                slopex = subs(subs(f1,x,x1),y,y1);<br>
+                                                <br>
+                                                % 3.Visualization of the plane in which the partial derivative is sought:<br>
+                                                [x2,z2]=meshgrid(x1-2:.25:x1+2,0:0.5:10);<br>
+                                                y2=y1*ones(size(x2));<br>
+                                                hold on<br>
+                                                h1=surf(x2,y2,z2);<br>
+                                                set(h1,'FaceColor',[0.7,0.7,0.7],'EdgeColor','none')<br>
+                                                <br>
+                                                % 4.The Tangent line:<br>
+                                                t=linspace(-1,1);<br>
+                                                x3=x1+t;<br>
+                                                y3=y1*ones(size(t));<br>
+                                                z3=z1+slopex*t;<br>
+                                                line(x3,y3,z3,'color','blue','linewidth',2)<br>
+                                                </p>
+
+                                                <br><br><br><br>
+                                                <p style="color: white;">
+                                                    % Local maxima and minima for two variables<br>
+                                                    clc<br>
+                                                    clear all<br>
+                                                    close all<br>
+                                                    format compact<br>
+                                                    <br>
+                                                    syms x y real<br>
+                                                    f = input('Enter the function f(x,y): ');<br>
+                                                    fx = diff(f, x)<br>
+                                                    fy = diff(f, y)<br>
+                                                    [ax, ay] = solve(fx, fy)<br>
+                                                    fxx = diff(fx, x)<br>
+                                                    D = fxx * diff(fy, y) - diff(fx, y)^2 %ln-m^2<br>
+                                                    <br>
+                                                    r = 1;<br>
+                                                    for k = 1:1:size(ax)<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;if ((imag(ax(k)) == 0) && (imag(ay(k)) == 0))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ptx(r) = ax(k);<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pty(r) = ay(k);<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = r + 1;<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+                                                    end<br>
+                                                    <br>
+                                                    a1 = max(double(ax))<br>
+                                                    a2 = min(double(ax))<br>
+                                                    b1 = max(double(ay))<br>
+                                                    b2 = min(double(ay))<br>
+                                                    ezsurf(f, [a2 - .5, a1 + .5, b2 - .5, b1 + .5])<br>
+                                                    colormap('summer');<br>
+                                                    shading interp<br>
+                                                    hold on<br>
+                                                    <br>
+                                                    for r1 = 1:1:(r - 1)<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;T1 = subs(subs(D, x, ptx(r1)), y, pty(r1))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;T2 = subs(subs(fxx, x, ptx(r1)), y, pty(r1))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;if (double(T1) == 0)<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The point (x,y) is (%d,%d) and need further investigation', double(ptx(r1)), double(pty(r1)))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;elseif (double(T1) < 0)<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T3 = subs(subs(f, x, ptx(r1)), y, pty(r1))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The point (x,y) is (%d,%d) a saddle point', double(ptx(r1)), double(pty(r1)))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot3(double(ptx(r1)), double(pty(r1)), double(T3), 'b.', 'markersize', 30);<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;else<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (double(T2) < 0)<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The maximum point(x,y) is (%d, %d)', double(ptx(r1)), double(pty(r1)))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T3 = subs(subs(f, x, ptx(r1)), y, pty(r1))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The value of the function is %d', double(T3))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot3(double(ptx(r1)), double(pty(r1)), double(T3), 'r+', 'markersize', 30);<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The minimum point(x,y) is (%d, %d)', double(ptx(r1)), double(pty(r1)))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T3 = subs(subs(f, x, ptx(r1)), y, pty(r1))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf('The value of the function is %d', double(T3))<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot3(double(ptx(r1)), double(pty(r1)), double(T3), 'm*', 'markersize', 30);<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+                                                    end<br>
+                                                    </p>
+                                                    <br><br><br><br>
+                                                    <p style="color: gray;">
+                                                        % Lagrange Multipliers<br>
+                                                        % 1.Initialization:<br>
+                                                        syms x y lam real<br>
+                                                        f = x^2 + 2 * y^2 % input('Enter f(x,y) to be extremized : ')<br>
+                                                        g = x^2 + y^2 - 1 %% input('Enter the constraint function g(x,y) : ')<br>
+                                                        <br>
+                                                        % 2.Computing Partial derivatives and finding the critical points:<br>
+                                                        F = f - lam * g<br>
+                                                        Fx = diff(F, x)<br>
+                                                        Fy = diff(F, y)<br>
+                                                        [ax, ay, alam] = solve([Fx, Fy, g], x, y, lam)<br>
+                                                        ax = double(ax)<br>
+                                                        ay = double(ay)<br>
+                                                        <br>
+                                                        r = 1;<br>
+                                                        for k = 1:1:size(ax)<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;if ((imag(ax(k)) == 0) && (imag(ay(k)) == 0))<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ptx(r) = ax(k);<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pty(r) = ay(k);<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = r + 1;<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+                                                        end<br>
+                                                        <br>
+                                                        % 3.Computing the values at the critical points<br>
+                                                        ax = ptx<br>
+                                                        ay = pty<br>
+                                                        T = subs(f, {x, y}, {ax, ay})<br>
+                                                        T = double(T)<br>
+                                                        epx = 3<br>
+                                                        epy = 3<br>
+                                                        figure(1)<br>
+                                                        for i = 1:length(T)<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;D = [ax(i) - epx, ax(i) + epx, ay(i) - epy, ay(i) + epy]<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;fprintf('The critical point (x,y) is (%1.3f,%1.3f).', ax(i), ay(i))<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;fprintf('The value of the function is %1.3f\n', T(i))<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;ezcontour(f, D)<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;hold on<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;h = ezplot(g, D);<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;set(h, 'Color', [1, 0.7, 0.9])<br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;plot(ax(i), ay(i), 'k.', 'markersize', 15 + 2 * i)<br>
+                                                        end<br>
+                                                        <br>
+                                                        %% 4.Finding the Maximum and minimum at those points:<br>
+                                                        f_min = min(T)<br>
+                                                        f_max = max(T)<br>
+                                                        </p>
+
+                                                        <br><br><br><br>
+                                                        <p style="color: white;">
+                                                            % Evaluating Volume under Surfaces<br>
+                                                            clc<br>
+                                                            clear all<br>
+                                                            syms x y z<br>
+                                                            vol = int(int(x^2 + y^2, x, y / 2, sqrt(y)), y, 0, 4)<br>
+                                                            viewSolidone(z, 0 + 0 * x * y, x^2 + y^2, x, y / 2, sqrt(y), y, 0, 4);<br>
+                                                            grid on;<br>
+                                                            <br>
+                                                            clc<br>
+                                                            clear all<br>
+                                                            syms x y z<br>
+                                                            vol = 8 * int(int(sqrt(1 - x^2 - y^2), y, 0, sqrt(1 - x^2)), x, 0, 1)<br>
+                                                            viewSolid(z, 0 + 0 * x * y, sqrt(1 - x^2 - y^2), y, 0 + 0 * x, sqrt(1 - x^2), x, 0, 1);<br>
+                                                            axis equal; grid on;<br>
+                                                            <br>
+                                                            clc<br>
+                                                            clear all<br>
+                                                            syms r theta<br>
+                                                            V = int(int((1 - r^2) * r, r, 0, 1), theta, 0, 2 * pi)<br>
+                                                            fsurf(r * cos(theta), r * sin(theta), 1 - r^2, [0 1 0 2 * pi], 'MeshDensity', 20)<br>
+                                                            axis equal; axis([-2 2 -2 2 0 1.3])<br>
+                                                            xticks(-2:2); yticks(-2:2); zticks(0:1.3)<br>
+                                                            xlabel('x'); ylabel('y')<br>
+                                                            <br>
+                                                            clc <br>
+                                                            clear all <br>
+                                                            syms r theta z r1 <br>
+                                                            V = int(int((r^2)*r, r, 0,2*cos(theta) ), theta, -pi/2, pi/2) <br>
+                                                            r = 2*cos(theta), x = r*cos(theta), y = r*sin(theta) <br>
+                                                            fsurf(x,y,z, [0 2*pi 0 1], 'MeshDensity', 16) <br>
+                                                            axis equal; xlabel('x'); ylabel('y'); zlabel('z') <br>
+                                                            zticks(0:1.5) <br>
+                                                            hold on <br>
+                                                            fsurf(r1*cos(theta),r1*sin(theta),r1^2, [0 1 0 2*pi], 'MeshDensity', 20)<br>
+                                                            </p>
+                                                            <br><br><br><br>
+                                                            <p style="color: white;">
+                                                                % Evaluating triple integrals<br>
+                                                                % the triple integral ∭ 6xy dV, where E lies under the plane z = 1 + x + y and above the region in the xy-plane bounded by the curves y = √x, y = 0 and x = 1.<br>
+                                                                % Matlab code<br>
+                                                                syms x y z<br>
+                                                                sol = int(int(int(6 * x * y, z, 0, 1 + x + y), y, 0, sqrt(x)), x, 0, 1)<br>
+                                                                viewSolid(z, 0 + 0 * x * y, 1 + x + y, y, 0 + 0 * x, sqrt(x), x, 0, 1);<br>
+                                                                axis equal; grid on;<br>
+                                                                </p>
+                                                                
+                                                                <br><br><br><br>
+                                                                <p style="color: gray;">
+                                                                    % Example 3<br>
+                                                                    % A solid E lies within the cylinder x^2 + y^2 = 1, below the plane z = 4, and above<br>
+                                                                    % the paraboloid z = 1 - (x^2 + y^2). The density at any point is proportional to<br>
+                                                                    % its distance from the axis of the cylinder. Find the mass of E.<br>
+                                                                    <br>
+                                                                    % Matlab code<br>
+                                                                    syms r z theta K<br>
+                                                                    Ma = int(int(int((K * r) * r, z, 1 - r^2, 4), r, 0, 1), theta, 0, 2 * pi) % integration<br>
+                                                                    x = r * cos(theta), y = r * sin(theta), s = sym(4)<br>
+                                                                    fsurf(x, y, 1 - r^2, [0 1 0 2 * pi], 'g', 'EdgeColor', 'none');  % plotting paraboloid<br>
+                                                                    hold on<br>
+                                                                    fsurf(1 * cos(theta), 1 * sin(theta), r, 'y', [0 4 0 2 * pi], 'EdgeColor', 'none')  % plotting<br>
+                                                                    cylinder of radius 1 with height z = 4<br>
+                                                                    fsurf(x, y, s, [0 1 0 2 * pi], 'b', 'EdgeColor', 'none'); % plotting circular plane z = 4.<br>
+                                                                    hold on<br>
+                                                                    axis equal; xlabel('x'); ylabel('y'); zlabel('z');<br>
+                                                                    alpha 0.5<br>
+                                                                    </p>
+                                                                    <br><br><br><br>
+                                                                    <p style="color: white;">
+                                                                        % Example 4<br>
+                                                                        % Use Matlab to draw the solid enclosed by the paraboloids z = x^2 + y^2 and Z = 5 - x^2 - y^2<br>
+                                                                        % Matlab code<br>
+                                                                        syms r z theta<br>
+                                                                        x = r * cos(theta); y = r * sin(theta);<br>
+                                                                        fsurf(x, y, 5 - r^2, [0 sqrt(5) 0 2 * pi], 'g', 'EdgeColor', 'none');<br>
+                                                                        hold on<br>
+                                                                        fsurf(x, y, r^2, [0 sqrt(5) 0 2 * pi], 'y', 'EdgeColor', 'none');<br>
+                                                                        axis equal; xlabel('x'); ylabel('y'); zlabel('z');<br>
+                                                                        alpha 0.5<br>
+                                                                        </p>
+                                                                        <br><br><br><br>
+                                                                        <p style="color: gray;">
+                                                                            % Draw a sphere of radius 5 with centre at (0,0,0)<br>
+                                                                            % Matlab code<br>
+                                                                            syms r z phi rho theta<br>
+                                                                            rho = 5<br>
+                                                                            x = rho * sin(phi) * cos(theta), y = rho * sin(phi) * sin(theta), z = rho * cos(phi);<br>
+                                                                            fsurf(x, y, z, [0 pi 0 2 * pi], 'g', 'MeshDensity', 20);<br><br>
+                                                                            
+                                                                            % Draw a hemisphere of radius 3 with centre at (0,0,0)<br>
+                                                                            % Matlab code<br>
+                                                                            syms r z phi rho theta<br>
+                                                                            rho = 3<br>
+                                                                            x = rho * sin(phi) * cos(theta), y = rho * sin(phi) * sin(theta), z = rho * cos(phi);<br>
+                                                                            fsurf(x, y, z, [0 pi / 2 0 2 * pi], 'g', 'MeshDensity', 20);<br>
+                                                                            </p>
+                                                                            <br><br><br><br>
+                                                                            <p style="color: white;">
+                                                                                % Evaluate ∭ z dV, where E is enclosed by the spheres x² + y² + z² = 1 and x² + y² + z² = 4 in the first octant.<br>
+                                                                                % Matlab code<br>
+                                                                                clc<br>
+                                                                                clear all<br>
+                                                                                syms r phi rho theta<br>
+                                                                                Sol = int(int(int((rho*cos(phi))*(rho)^2*sin(phi), rho, 1, 2), phi, 0, pi/2), theta, 0, pi/2)<br>
+                                                                                rho = 1;<br>
+                                                                                x = rho * sin(phi) * cos(theta), y = rho * sin(phi) * sin(theta), z = rho * cos(phi);<br>
+                                                                                fsurf(x, y, z, [0 pi/2 0 pi/2], 'g', 'MeshDensity', 20);<br>
+                                                                                hold on<br>
+                                                                                rho = 2;<br>
+                                                                                x = rho * sin(phi) * cos(theta), y = rho * sin(phi) * sin(theta), z = rho * cos(phi);<br>
+                                                                                fsurf(x, y, z, [0 pi/2 0 pi/2], 'b', 'MeshDensity', 20);<br>
+                                                                                </p>
+                                                                                <br><br><br><br>
+                                                                            <p style="color: gray;">
+                                                                                % Draw the two-dimensional vector field for the vector x𝑖 + y𝑗<br>
+% MATLAB Code:<br>
+clc<br>
+clear all<br>
+syms x y<br>
+F = input('Enter the vector as i, and j order in vector form:');<br>
+P = inline(vectorize(F(1)), 'x', 'y');<br>
+Q = inline(vectorize(F(2)), 'x', 'y');<br>
+x = linspace(-1, 1, 10);<br>
+y = x;<br>
+[X, Y] = meshgrid(x, y);<br>
+U = P(X, Y);<br>
+V = Q(X, Y);<br>
+quiver(X, Y, U, V, 1)<br>
+axis on<br>
+xlabel('x')<br>
+ylabel('y')<br>
+</p>
+
+
+<br><br><br><br>            
+
+                                                <p style="color:#ffffff;">
+%% Draw the three dimensional vector field for the vector 𝑥𝜄→ -𝑦𝖩→ +𝑧⃗⃗𝑘→ <br>
+% MATLAB Code: <br>
+syms x y z <br>
+F=input('enter the vector as i,j and korder in vector form:') <br>
+P = inline(vectorize(F(1)), 'x', 'y','z'); <br>
+Q = inline(vectorize(F(2)), 'x', 'y','z'); <br>
+R = inline(vectorize(F(3)), 'x', 'y','z'); <br>
+x = linspace(-1, 1, 5); y = x; <br>
+z=x; <br>
+[X,Y,Z] = meshgrid(x,y,z); <br>
+U = P(X,Y,Z); <br>
+V = Q(X,Y,Z); <br>
+W = R(X,Y,Z); <br>
+quiver3(X,Y,Z,U,V,W,1.5) <br>
+axis on <br>
+xlabel('x') <br>
+ylabel('y') <br>
+zlabel('z') <br>
+</p>
+<br><br><br><br>
+<p style="color:#808080;">
+    % Find the gradient vector field of (𝑥, 𝑦) = 𝑥²𝑦 − 𝑦³ . Plot the gradient vector field together with <br>
+    % a contour map of f. How are they related? <br>
+    % MATLAB Code: <br>
+    clc <br>
+    clear all <br>
+    syms x y <br>
+    f=input('enter the function f(x,y):'); <br>
+    F=gradient(f) <br>
+    P = inline(vectorize(F(1)), 'x', 'y'); <br>
+    Q = inline(vectorize(F(2)), 'x','y'); <br>
+    x = linspace(-2, 2, 10); <br>
+    y = x; <br>
+    [X,Y] = meshgrid(x,y); <br>
+    U = P(X,Y); <br>
+    V = Q(X,Y); <br>
+    quiver(X,Y,U,V,1) <br>
+    axis on <br>
+    xlabel('x') <br>
+    ylabel('y') <br>
+    hold on <br>
+    ezcontour(f,[-2 2]) <br>
+    </p>
+    <br><br><br><br>
+    <p style="color:white;">
+        % Find (a) the curl and (b) the divergence of the vector field. <br>
+        % MATLAB code <br>
+        clc <br>
+        clear all <br>
+        syms x y z real <br>
+        F=input('enter the vector as i, j and k order in vector form:') <br>
+        curl_F = curl(F, [x y z]) <br>
+        div_F = divergence(F, [x y z]) <br>
+        </p>
+        <br><br><br><br>
+        
+        <p style="color:#808080;">
+            % Determine whether or not the vector field is conservative. If it is conservative, find a function f such that. <br>
+            % MATLAB code <br>
+            clc <br>
+            clear all <br>
+            syms x y z real <br>
+            F=input('enter the vector as i,j and k order in vector form:') <br>
+            curl_F = curl(F, [x y z]) <br>
+            if (curl_F == [0 0 0]) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;f = potential(F, [x y z]) <br>
+            else <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;sprintf('curl_F is not equal to zero') <br>
+            end <br>
+            </p>
+            <br><br><br><br>
+            <p style="color:white;">
+                % LINE INTEGRAL AND GREEN’S THEOREM <br>
+                % MATLAB code <br>
+                clc <br>
+                clear <br>
+                syms t x y <br>
+                f=input('enter the f vector as i and j order in vector form:'); <br>
+                rbar = input('enter the r vector as i and j order in vector form:'); <br>
+                lim=input('enter the limit of integration:'); <br>
+                vecfi=input('enter the vector field range'); % knowledge of the curve is essential <br>
+                drbar=diff(rbar,t); <br>
+                sub = subs(f,[x,y],rbar); <br>
+                f1=dot(sub,drbar) <br>
+                int(f1,t,lim(1),lim(2)) <br>
+                P = inline(vectorize(f(1)), 'x', 'y'); <br>
+                Q = inline(vectorize(f(2)), 'x', 'y'); <br>
+                x = linspace(vecfi(1),vecfi(2), 10); y = x; <br>
+                [X,Y] = meshgrid(x,y); <br>
+                U = P(X,Y); <br>
+                V = Q(X,Y); <br>
+                quiver(X,Y,U,V) <br>
+                hold on <br>
+                fplot(rbar(1),rbar(2),[lim(1),lim(2)]) <br>
+                axis on <br>
+                xlabel('x') <br>
+                ylabel('y') <br>
+                </p>
+                <br><br><br><br>
+                <p style="color: gray;">
+                    % 1. Find the work done by the force field 𝐹⃗(𝑥,𝑦) = (𝑦 + 𝑧⃗, 𝑥 + 𝑧⃗,𝑥 + 𝑦) on a particle<br>
+                    % that moves along the line segment (1, 0, 0) to (3, 4, 2)<br>
+                    % Code<br>
+                    clc<br>
+                    clear<br>
+                    syms t x y z<br>
+                    f = input('Enter the f vector as i j and k order in vector form:');<br>
+                    rbar = input('Enter the r vector as i j and k order in vector form:');<br>
+                    lim = input('Enter the limit of integration:');<br>
+                    vecfi = input('Enter the vector field range'); % knowledge of the curve is essential<br>
+                    drbar = diff(rbar, t);<br>
+                    sub = subs(f, [x, y, z], rbar);<br>
+                    f1 = dot(sub, drbar);<br>
+                    int(f1, t, lim(1), lim(2));<br>
+                    P = inline(vectorize(f(1)), 'x', 'y', 'z');<br>
+                    Q = inline(vectorize(f(2)), 'x', 'y', 'z');<br>
+                    R = inline(vectorize(f(3)), 'x', 'y', 'z');<br>
+                    x = linspace(vecfi(1), vecfi(2), 10); y = x; z = x;<br>
+                    [X, Y, Z] = meshgrid(x, y, z);<br>
+                    U = P(X, Y, Z);<br>
+                    V = Q(X, Y, Z);<br>
+                    W = R(X, Y, Z);<br>
+                    quiver3(X, Y, Z, U, V, W);<br>
+                    hold on<br>
+                    t = linspace(lim(1), lim(2), 50);<br>
+                    a = subs(rbar(1), t);<br>
+                    b = subs(rbar(2), t);<br>
+                    c = subs(rbar(3), t);<br>
+                    plot3(a, b, c);<br>
+                    axis on<br>
+                    xlabel('x');<br>
+                    ylabel('y');<br>
+                    zlabel('z');<br>
+                    </p>
+
+                    <br><br><br><br>
+                    <p style="color: rgb(255, 255, 255);">
+                        % GREEN'S THEOREM<br><br>
+                        clc<br>
+                        clear all<br>
+                        syms x y r t<br><br>
+                        F = input('Enter the F vector as i and j order in vector form:');<br><br>
+                        integrand = diff(F(2), x) - diff(F(1), y);<br>
+                        polarint = r * subs(integrand, [x, y], [r*cos(t), r*sin(t)]);<br>
+                        sol = int(int(polarint, r, 0, 3), t, 0, 2*pi);<br><br>
+                        P = inline(vectorize(F(1)), 'x', 'y');<br>
+                        Q = inline(vectorize(F(2)), 'x', 'y');<br><br>
+                        x = linspace(-3.2, 3.2, 10); y = x;<br>
+                        [X, Y] = meshgrid(x, y);<br>
+                        U = P(X, Y);<br>
+                        V = Q(X, Y);<br>
+                        quiver(X, Y, U, V);<br>
+                        hold on<br>
+                        fplot(3*cos(t), 3*sin(t), [0, 2*pi]);<br>
+                        axis equal;<br>
+                        </p>
+                        <br><br><br><br>
+                        <p style="color: gray;">
+                            % Evaluate ∮ (𝑦²)𝑑𝑥 + (3𝑥𝑦)𝑑𝑦, where C is the boundary of the circles 𝑥² + 𝑦² = 1<br><br>
+                            clc<br>
+                            clear all<br>
+                            syms x y r t<br><br>
+                            
+                            F = input('Enter the F vector as i and j order in vector form:');<br><br>
+                            integrand = diff(F(2), x) - diff(F(1), y);<br>
+                            polarint = r * subs(integrand, [x, y], [r*cos(t), r*sin(t)]);<br>
+                            sol = int(int(polarint, r, 0, 1), t, 0, 2*pi);<br><br>
+                            
+                            P = inline(vectorize(F(1)), 'x', 'y');<br>
+                            Q = inline(vectorize(F(2)), 'x', 'y');<br><br>
+                            
+                            x = linspace(-3.2, 3.2, 10); y = x;<br>
+                            [X, Y] = meshgrid(x, y);<br>
+                            U = P(X, Y);<br>
+                            V = Q(X, Y);<br>
+                            quiver(X, Y, U, V);<br>
+                            hold on<br>
+                            fplot(cos(t), sin(t), [0, 2*pi]);<br>
+                            axis equal;<br>
+                            </p>
+                            
+                         
+                    
+
+                
+        
+
+
+
+                                                    
+
+                                                
+                                            
+                                            
+            
+                                            
+
+
+
+
+                                        
+                                    
+
+                                        
+                            
+                                
+                            
+                    
+<br>
+<br>
+<br>
+
+                        
+                    <br>
+<br>
+<br>
+<br>
+<br>
+
+                        
+                </div>
+
+                <!-- Command Window -->
+                <div class="command-window" id="command-window">
+                    <h4>Command Window</h4>
+                    <p>&gt;&gt; </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
